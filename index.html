@@ -5,14 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue 3 Computed Property</title>
+  <title>Vue 3 Watchers</title>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="app.js" defer></script>
   <style type="text/css">
     body,
-    input {
+    input,
+    button {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      font-size: 40pt;
+      font-size: 20pt;
     }
 
     div {
@@ -23,26 +24,7 @@
 
 <body>
   <div id="app">
-    <div>
-      Price {{price}}$
-    </div>
-    <div>
-      Tax Rate {{taxRate}}%
-    </div>
-
-    <div>
-      With VAT {{includingVat}}%
-    </div>
-    <div>
-      With VAT {{includingVatM()}}
-    </div>
-    <div>
-      Items {{items}}
-    </div>
-
-    <div>
-      Total {{total}}$
-    </div>
+    <div>{{ message }}</div>
   </div>
 </body>
 

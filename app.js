@@ -1,31 +1,31 @@
-let taxRate = 1.23;
 const vm = Vue.createApp({
   data() {
     return {
-      price: 4,
-      items: 0
-    }
-  },
-  methods: {
-    includingVatM() {
-      console.log('method - includingVat');
-      return (this.price
-        * taxRate).toFixed(2);
+      name: '',
+      gender: 'unknown'
     }
   },
   computed: {
-    taxRate() {
-      console.log('taxRate');
-      return (taxRate * 100) - 100;
+    message() {
+      return `Hello ${this.prefix} ${this.name}`;
     },
-    includingVat() {
-      console.log('computed - includingVat');
-      return (this.price
-        * taxRate).toFixed(2);
+    prefix() {
+      switch (this.gender) {
+        case 'male': return 'Mr ';
+        case 'female':  return 'Ms ';
+        default: return '';
+      }
+    }
+  },
+  watch: {
+    name(newName, oldName) {
+      console.log(newName);
+      console.log(oldName);
+
+      fetch(`https://api.genderize.io?name=${newName}`).then(response => response.json()).then(json => this.gender = json.gender);
     },
-    total() {
-      return (this.includingVat
-        * this.items).toFixed(2);
+    message() {
+      console.log('The watcher was called');
     }
   }
 }).mount('#app');
