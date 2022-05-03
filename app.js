@@ -1,31 +1,29 @@
+const icons = {
+  rocket: '🚀',
+  meat: '🥩',
+  fish: '🐟',
+  us: '🇺🇸',
+  india: '🇮🇳',
+  vege: '🌱'
+};
+
 const vm = Vue.createApp({
   data() {
     return {
-      name: '',
-      gender: 'unknown'
+      started: false,
+      vegetarian: false,
+      basket: [
+        'Milk',
+        'Cheese',
+        'Carrot',
+        'Fish'
+      ]
     }
   },
   computed: {
-    message() {
-      return `Hello ${this.prefix} ${this.name}`;
+    icons() { return icons },
+    isReallyVegetarian() {
+      return !this.basket.includes('Fish');
     },
-    prefix() {
-      switch (this.gender) {
-        case 'male': return 'Mr ';
-        case 'female':  return 'Ms ';
-        default: return '';
-      }
-    }
-  },
-  watch: {
-    name(newName, oldName) {
-      console.log(newName);
-      console.log(oldName);
-
-      fetch(`https://api.genderize.io?name=${newName}`).then(response => response.json()).then(json => this.gender = json.gender);
-    },
-    message() {
-      console.log('The watcher was called');
-    }
   }
 }).mount('#app');
