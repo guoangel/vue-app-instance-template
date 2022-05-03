@@ -24,10 +24,10 @@
 
 <body>
   <div id="app">
-    <div v-if="!started">
+    <div v-show="!started">
       {{ icons.rocket }} Let's start the test!
     </div>
-    <div v-else>
+    <div v-show="started">
       <div v-if="vegetarian && isReallyVegetarian">
         You are a vege
       </div>
