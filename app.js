@@ -1,25 +1,62 @@
 const vm = Vue.createApp({
   data() {
     return {
-      items: [
+      todos: [
         {
-          name: 'Milk',
-          price: 1.5
+          name: 'Buy groceries',
+          done: false
         },
         {
-          name: 'Beer',
-          price: 3.1
+          name: 'Pay bills',
+          done: true
         },
         {
-          name: 'Juice',
-          price: 2.5
-        }
+          name: 'Take dogs for a walk',
+          done: true
+        },
       ],
-      countries: {
-        us: 'United States',
-        de: 'Germany',
-        br: 'Brazil'
-      }
+      showTodos: true,
+      sortOrder: 'ASC',
+      onlyPaid: false,
+      invoices: [
+        {
+          id: 2,
+          item: 'Udemy Course',
+          price: 9.99,
+          paid: false
+        },
+        {
+          id: 1,
+          item: 'Book',
+          price: 39.99,
+          paid: true
+        },
+        {
+          id: 3,
+          item: 'MacBook Air',
+          price: 599.99,
+          paid: true
+        }
+      ]
     }
   },
+  computed: {
+    doneTodos() {
+      // TO BE IMPLEMENTED
+      return this.todos.filter(todo => todo.done);
+    },
+    paidInvoices() {
+      // TO BE IMPLEMENTED
+      return [];
+    },
+    sortedInvoices() {
+      // TO BE IMPLEMENTED
+      return this.invoices.sort((a, b) => a.id - b.id );
+    }
+  },
+  methods: {
+    toggleSortOrder() {
+      // TO BE IMPLEMENTED
+    }
+  }
 }).mount('#app');

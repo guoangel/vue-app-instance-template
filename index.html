@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-  <title>Vue 3 List Rendering</title>
+  <title>Vue 3 List Filtering/Sorting</title>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="app.js" defer></script>
   <style type="text/css">
@@ -14,42 +14,47 @@
     input,
     button {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      font-size: 40pt;
+      font-size: 16pt;
     }
 
     div {
       padding: 0.3rem;
-    }
-
-    .page {
-      display: inline-block;
-      border: 1px solid red;
-      width: 1.2em;
-      margin-right: 0.5em;
-      text-align: center;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <ul>
-      <template v-for="(item, index) of items">
-        <li v-if="item.price>2">
-          {{index + 1}}. {{item.name}} for {{item.price}}
-        </li>
-      </template>
+    <h3>All to-do's</h3>
+    <ul v-if="showTodos">
+      <li v-for="todo in todos">
+        {{todo.name}}</li>
     </ul>
 
+    <h3>Done to-do's</h3>
+    <ul v-if="showTodos">
+      <li v-for="todo in doneTodos">
+        {{todo.name}}</li>
+    </ul>
+
+    <h3>All invoices</h3>
+    <div>
+      <button @click="toggleSortOrder">
+        Toggle Sort Order
+      </button>
+      <div>
+        <input type="checkbox" id="paid-invoices"
+          v-model="onlyPaid">
+        <label for="paid-invoices">Only paid
+          invoices</label>
+      </div>
+    </div>
     <ul>
-      <li v-for="(country, code, index) in countries">
-        {{index}}, {{code}}, {{country}}
+      <li v-for="invoice in sortedInvoices">
+        {{invoice.id}}, {{invoice.item}} for
+        {{invoice.price}}$
       </li>
     </ul>
-    <div>
-      <div v-for="page of 10" class="page">{{ page }}</div>
-    </div>
-
   </div>
 </body>
 
