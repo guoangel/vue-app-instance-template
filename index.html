@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue 3 Reactivity</title>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Event Handling</title>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="app.js" defer></script>
   <style type="text/css">
@@ -24,38 +25,51 @@
 
 <body>
   <div id="app">
-    <div>
-      <label for="riddle1">Interpolation is aslo called</label>
-      <input type="text" v-model="riddle1" id="riddle1"> syntax
-    </div>
-    <div v-if="level1">
-      <label for="riddle2">What's the current Vue version?</label>
-      <input type="number" v-model.number="riddle2" id="riddle2">
-    </div>
-    <div v-if="level2">
+    <div v-show="step == 1">
       <div>
-        <input id="riddle3a" type="checkbox" v-model="riddle3" value="Reactive">
-        <label for="riddle3a">Reactive</label>
+        Using an inline expression as event handler
       </div>
       <div>
-        <input id="riddle3b" type="checkbox" v-model="riddle3" value="Computed">
-        <label for="riddle3b">Computed</label>
-      </div>
-      <div>
-        <input id="riddle3c" type="checkbox" v-model="riddle3" value="Method">
-        <label for="riddle3c">Method</label>
-      </div>
-      <div>
-        <input id="riddle3d" type="checkbox" v-model="riddle3" value="Variable">
-        <label for="riddle3d">Variable</label>
+        <button v-on:click="nextStep($event)">Go to next
+          step</button>
       </div>
     </div>
-    <div v-if="level3">
-      <input id="ready" type="checkbox" v-model="ready">
-      <label for="ready">Ready?</label>
+    <div v-show="step == 2">
+      <div>Calling a method in event handler</div>
+      <div>
+        <button @click="nextStep(), log('next step')">Go
+          to next step</button>
+      </div>
     </div>
-    <div v-if="level3 && ready">
-      Worldstar!!!
+    <div v-show="step == 3">
+      <form @submit.prevent="log('@submit')">
+        <div>
+          <label for="firstName">First name</label>
+        </div>
+        <div>
+          <input type="text" id="firstName"
+            @change="log('@change firstName')">
+        </div>
+
+        <div>
+          <label for="lastName">Last name</label>
+        </div>
+        <div>
+          <input type="text" id="lastName"
+            @change="log('@change lastName')"
+            @input="log('@input lastName', $event)"
+            @keydown="log('@keydown lastName', $event)"
+            @keyup="log('@keyup lastName', $event)">
+        </div>
+
+        <div>
+          <input type="submit" value="Save">
+          <button type="button"
+            @mouseover="log('@mouseover button')"
+            @mouseleave="log('@mouseleave button')"
+            @click="log('I am a dummy button')">Dummy</button>
+        </div>
+      </form>
     </div>
   </div>
 </body>
