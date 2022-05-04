@@ -30,6 +30,11 @@
         {{index + 1}}. {{item.name}} for {{item.price}}
       </li>
     </ul>
+    <ul>
+      <li v-for="(country, code, index) of countries">
+      {{ index }}  {{ code }}, {{ country}}
+      </li>
+    </ul>
   </div>
 </body>
 

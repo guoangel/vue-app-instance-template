@@ -15,6 +15,11 @@ const vm = Vue.createApp({
           price: 2.5
         }
       ],
+      countries: {
+        us: 'United States',
+        de: 'Germany',
+        br: 'Brazil'
+      }
     }
   },
 }).mount('#app');
