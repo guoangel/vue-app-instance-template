@@ -18,58 +18,80 @@
     }
 
     div {
-      padding: 0.3rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .border-red {
+      border: 1px dashed red;
+    }
+
+    .border-green {
+      border: 1px dashed green;
+    }
+
+    .border-blue {
+      border: 1px dashed blue;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <div v-show="step == 1">
-      <div>
-        Using an inline expression as event handler
-      </div>
-      <div>
-        <button v-on:click="nextStep($event)">Go to next
-          step</button>
+    <div class="border-red" v-if="visible"
+      @click="hide(), log('Hiding element!')">
+      Click to hide!
+      <button @click="log('Playing!')">Click to
+        play!</button>
+    </div>
+
+    <div @click="log('1 level')" class="border-red">
+      @click (no modifiers)
+      <div @click="log('2 level')" class="border-green">
+        @click
+        <div @click="log('3 level')" class="border-blue">
+          @click
+        </div>
       </div>
     </div>
-    <div v-show="step == 2">
-      <div>Calling a method in event handler</div>
-      <div>
-        <button @click="nextStep(), log('next step')">Go
-          to next step</button>
+
+    <div @click="log('1 level')" class="border-red">
+      @click (2nd element has .self)
+      <div @click.self="log('2 level')"
+        class="border-green">
+        @click.self
+        <div @click="log('3 level')" class="border-blue">
+          @click
+        </div>
       </div>
     </div>
-    <div v-show="step == 3">
-      <form @submit.prevent="log('@submit')">
-        <div>
-          <label for="firstName">First name</label>
-        </div>
-        <div>
-          <input type="text" id="firstName"
-            @change="log('@change firstName')">
-        </div>
 
-        <div>
-          <label for="lastName">Last name</label>
+    <div @click="log('1 level')" class="border-red">
+      @click (2nd element has .stop)
+      <div @click.stop="log('2 level')"
+        class="border-green">
+        @click.stop
+        <div @click="log('3 level')" class="border-blue">
+          @click
         </div>
-        <div>
-          <input type="text" id="lastName"
-            @change="log('@change lastName')"
-            @input="log('@input lastName', $event)"
-            @keydown="log('@keydown lastName', $event)"
-            @keyup="log('@keyup lastName', $event)">
-        </div>
+      </div>
+    </div>
 
-        <div>
-          <input type="submit" value="Save">
-          <button type="button"
-            @mouseover="log('@mouseover button')"
-            @mouseleave="log('@mouseleave button')"
-            @click="log('I am a dummy button')">Dummy</button>
-        </div>
-      </form>
+    <div @click.capture="log('Text clicked')"
+      class="border-red">
+      .capture (the parent element handler is called FIRST)
+      <button @click="log('Button clicked')">Button</button>
+    </div>
+
+    <div @click="log('Text clicked')" class="border-red">
+      without .capture
+      <button @click="log('Button clicked')">Button</button>
+    </div>
+
+    <div class="border-red">
+      .once (event triggered only once)
+      <button @click.once="log('Button clicked')">Just
+        once!</button>
     </div>
   </div>
 </body>
