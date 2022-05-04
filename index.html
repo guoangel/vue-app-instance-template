@@ -50,7 +50,7 @@
       </div>
     </div>
     <ul>
-      <li v-for="invoice in sortedInvoices">
+      <li v-for="invoice in sortedInvoices" :key="invoice.id">
         {{invoice.id}}, {{invoice.item}} for
         {{invoice.price}}$
       </li>
