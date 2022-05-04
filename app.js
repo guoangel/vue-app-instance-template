@@ -1,15 +1,20 @@
 const vm = Vue.createApp({
   data() {
     return {
-      visible: true
+      items: [
+        {
+          name: 'Milk',
+          price: 1.5
+        },
+        {
+          name: 'Beer',
+          price: 3.1
+        },
+        {
+          name: 'Juice',
+          price: 2.5
+        }
+      ],
     }
   },
-  methods: {
-    log(msg) {
-      console.log(msg);
-    },
-    hide() {
-      this.visible = false;
-    }
-  }
 }).mount('#app');
