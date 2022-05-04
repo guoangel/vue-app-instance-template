@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-  <title>Vue 3 List Filtering/Sorting</title>
+  <title>Vue 3 CSS Class Bindings</title>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="app.js" defer></script>
   <style type="text/css">
@@ -20,41 +20,33 @@
     div {
       padding: 0.3rem;
     }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    .bigfont {
+      font-size: 2em;
+    }
+
+    .red {
+      color: red;
+    }
+
+    .orange {
+      color: orange;
+    }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <h3>All to-do's</h3>
-    <ul v-if="showTodos">
-      <li v-for="todo in todos">
-        {{todo.name}}</li>
-    </ul>
-
-    <h3>Done to-do's</h3>
-    <ul v-if="showTodos">
-      <li v-for="todo in doneTodos">
-        {{todo.name}}</li>
-    </ul>
-
-    <h3>All invoices</h3>
-    <div>
-      <button @click="toggleSortOrder">
-        Toggle Sort Order
-      </button>
-      <div>
-        <input type="checkbox" id="paid-invoices"
-          v-model="onlyPaid">
-        <label for="paid-invoices">Only paid
-          invoices</label>
-      </div>
+    <div :class="classes">
+      Demo Text
     </div>
-    <ul>
-      <li v-for="invoice in sortedInvoices" :key="invoice.id">
-        {{invoice.id}}, {{invoice.item}} for
-        {{invoice.price}}$
-      </li>
-    </ul>
+    <div>
+      Demo Text
+    </div>
   </div>
 </body>
 
