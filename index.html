@@ -36,6 +36,20 @@
     .orange {
       color: orange;
     }
+
+    .generic {
+      font: 1.2em;
+      padding: 10px;
+      outline: none;
+    }
+
+    .okay {
+      border-color: green;
+    }
+
+    .error {
+      border-color: red;
+    }
   </style>
 </head>
 
@@ -44,8 +58,11 @@
     <div :class="classes">
       Demo Text
     </div>
-    <div>
+    <div :class="[highlightClass, errorClass]">
       Demo Text
+    </div>
+    <div>
+      <input type="text" v-model="theText" :class="[generic, {okay: isOk, error: !isOk}]">
     </div>
   </div>
 </body>

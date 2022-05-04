@@ -5,7 +5,8 @@ const vm = Vue.createApp({
       isBigFont: false,
       isRed: false,
       highlightClass: 'underline',
-      errorClass: 'red'
+      errorClass: 'red',
+      theText: ''
     }
   },
   computed: {
@@ -15,6 +16,9 @@ const vm = Vue.createApp({
         underline: this.isUnderlined, 
         bigfont: this.isBigFont
       }
+    },
+    isOk() {
+      return this.theText === 'okay';
     }
   }
 }).mount('#app');
