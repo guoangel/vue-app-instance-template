@@ -34,9 +34,11 @@
 <body>
   <div id="app">
     <ul>
-      <li v-for="(item, index) of items">
-        {{index + 1}}. {{item.name}} for {{item.price}}
-      </li>
+      <template v-for="(item, index) of items">
+        <li v-if="item.price>2">
+          {{index + 1}}. {{item.name}} for {{item.price}}
+        </li>
+      </template>
     </ul>
 
     <ul>
