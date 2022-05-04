@@ -20,6 +20,14 @@
     div {
       padding: 0.3rem;
     }
+
+    .page {
+      display: inline-block;
+      border: 1px solid red;
+      width: 1.2em;
+      margin-right: 0.5em;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -30,11 +38,16 @@
         {{index + 1}}. {{item.name}} for {{item.price}}
       </li>
     </ul>
+
     <ul>
-      <li v-for="(country, code, index) of countries">
-      {{ index }}  {{ code }}, {{ country}}
+      <li v-for="(country, code, index) in countries">
+        {{index}}, {{code}}, {{country}}
       </li>
     </ul>
+    <div>
+      <div v-for="page of 10" class="page">{{ page }}</div>
+    </div>
+
   </div>
 </body>
 
