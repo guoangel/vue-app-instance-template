@@ -16,7 +16,7 @@ const vm = Vue.createApp({
         },
       ],
       showTodos: true,
-      sortOrder: 'ASC',
+      sortOrder: 'DESC',
       onlyPaid: false,
       invoices: [
         {
@@ -47,16 +47,18 @@ const vm = Vue.createApp({
     },
     paidInvoices() {
       // TO BE IMPLEMENTED
-      return [];
+      return this.invoices.filter(invoice => invoice.paid);
     },
     sortedInvoices() {
       // TO BE IMPLEMENTED
-      return this.invoices.sort((a, b) => a.id - b.id );
+      const invoices = this.onlyPaid ? this.paidInvoices : this.invoices;
+      return invoices.sort((a, b) => this.sortOrder == 'ASC' ? a.id - b.id : b.id-a.id );
     }
   },
   methods: {
     toggleSortOrder() {
       // TO BE IMPLEMENTED
+      this.sortOrder = this.sortOrder == 'ASC' ? 'DESC' : 'ASC';
     }
   }
 }).mount('#app');
