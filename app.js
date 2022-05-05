@@ -1,24 +1,11 @@
-const vm = Vue.createApp({
+const app = Vue.createApp({
   data() {
-    return {
-      isUnderlined: false,
-      isBigFont: false,
-      isRed: false,
-      highlightClass: 'underline',
-      errorClass: 'red',
-      theText: ''
-    }
+    return {}
   },
-  computed: {
-    classes() {
-      return {
-        red: this.isRed, 
-        underline: this.isUnderlined, 
-        bigfont: this.isBigFont
-      }
-    },
-    isOk() {
-      return this.theText === 'okay';
-    }
-  }
-}).mount('#app');
+  methods: {},
+  computed: {}
+});
+app.component('hello-world-item', {
+  template: `<div>Hello World!</div>`,
+});
+app.mount('#app');

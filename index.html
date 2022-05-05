@@ -6,64 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-  <title>Vue 3 CSS Class Bindings</title>
+  <title>Vue 3 Components</title>
   <script src="https://unpkg.com/vue@next"></script>
+  <link rel="stylesheet"
+    href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.css">
   <script src="app.js" defer></script>
-  <style type="text/css">
-    body,
-    input,
-    button {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      font-size: 16pt;
-    }
-
-    div {
-      padding: 0.3rem;
-    }
-
-    .underline {
-      text-decoration: underline;
-    }
-
-    .bigfont {
-      font-size: 2em;
-    }
-
-    .red {
-      color: red;
-    }
-
-    .orange {
-      color: orange;
-    }
-
-    .generic {
-      font: 1.2em;
-      padding: 10px;
-      outline: none;
-    }
-
-    .okay {
-      border-color: green;
-    }
-
-    .error {
-      border-color: red;
-    }
-  </style>
 </head>
 
-<body>
-  <div id="app">
-    <div :class="classes">
-      Demo Text
-    </div>
-    <div :class="[highlightClass, errorClass]">
-      Demo Text
-    </div>
-    <div>
-      <input type="text" v-model="theText" :class="[generic, {okay: isOk, error: !isOk}]">
-    </div>
+<body class="bg-gray-50 text-gray-800">
+  <div id="app" class="p-8 w-3/4 mx-auto">
+    <hello-world-item></hello-world-item>
+    <hello-world-item></hello-world-item>
+    <hello-world-item></hello-world-item>
   </div>
 </body>
 
