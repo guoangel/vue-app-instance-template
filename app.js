@@ -66,7 +66,10 @@ app.component('add-task-input', {
       this.task='';
     }
   },
-  template: `<input type="text" placeholder="Enter task and hit enter" @keyup.enter="add" v-model="task" class="block w-full rounded-md shadow-sm text-lg p-4" />`,
+  mounted() {
+    this.$refs.input.focus();
+  },
+  template: `<input type="text" ref="input" placeholder="Enter task and hit enter" @keyup.enter="add" v-model="task" class="block w-full rounded-md shadow-sm text-lg p-4" />`,
 });
 
 app.component('base-checkbox', {
