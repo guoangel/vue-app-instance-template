@@ -44,13 +44,11 @@ app.component('todo-list-item', {
       <div>{{task.description}}</div>
       <div class="py-4 bg-white">
       <base-checkbox class="mb-2"
-        label="Done"
         @update:model-value="$emit('update:done', $event)"
-        :model-value="done"></base-checkbox>
+        :model-value="done">Done</base-checkbox>
       <base-checkbox
-        label="Prioritized"
         @update:model-value="$emit('update:priority', $event)"
-        :model-value="priority"></base-checkbox>
+        :model-value="priority">Prioritized</base-checkbox>
     </div>
   </div>`,
 });
@@ -76,9 +74,6 @@ app.component('base-checkbox', {
     modelValue: {
       type: Boolean,
       default: false
-    },
-    label: {
-      type: String
     }
   },
   emits: ['update:modelValue'],
@@ -94,7 +89,7 @@ app.component('base-checkbox', {
       class="h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
       :checked="modelValue"
       @change="onChange"/>
-    <label>{{label}}</label>
+    <label><slot>Checkbox</slot></label>
   </div>`
 });
 app.mount('#app');
